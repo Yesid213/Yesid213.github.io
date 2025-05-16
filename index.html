@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio Personal - Desarrollador</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e6f0fb;
+      color: #03396c;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: #0563af;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #012f55;
+    }
+
+    header {
+      background-color: #014f86;
+      color: #ffffff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(1, 79, 134, 0.5);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Icon styling */
+    svg.icon {
+      width: 28px;
+      height: 28px;
+      fill: #ffffff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    nav ul li svg {
+      vertical-align: middle;
+      margin-right: 6px;
+      fill: #cce5ff;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background: #d9e7fb;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(1, 79, 134, 0.2);
+      transition: box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 6px 16px rgba(1, 79, 134, 0.35);
+    }
+
+    section h2 {
+      color: #013a63;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #0563af;
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.8rem;
+    }
+
+    section h2 svg {
+      fill: #034078;
+    }
+
+    /* Inicio */
+    #inicio {
+      text-align: center;
+      color: #012f55;
+    }
+
+    #inicio img.profile-pic {
+      margin-top: 1rem;
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #014f86;
+      box-shadow: 0 0 10px #036;
+    }
+
+    #inicio .intro-text {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    /* Proyectos */
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: #f2f8ff;
+      border: 1.5px solid #037;
+      border-radius: 10px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 7px rgba(3,55,110,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(3,55,110,0.3);
+    }
+
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      color: #014676;
+    }
+
+    .project-card p {
+      flex-grow: 1;
+      color: #034078;
+      margin-bottom: 1rem;
+    }
+
+    .project-card a {
+      align-self: flex-start;
+      background-color: #014f86;
+      color: #fff;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(1, 79, 134, 0.5);
+      transition: background-color 0.3s ease;
+    }
+
+    .project-card a:hover {
+      background-color: #01345f;
+      box-shadow: 0 4px 10px rgba(1, 52, 95, 0.7);
+    }
+
+    /* Experiencia academica y personal list */
+    .experience-list {
+      list-style-type: none;
+      color: #014f86;
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-top: 1rem;
+    }
+
+    .experience-list li {
+      background-color: #d9eaff;
+      border-left: 5px solid #036;
+      padding: 0.6rem 1rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(2, 55, 95, 0.15);
+      position: relative;
+    }
+
+    .experience-list li span.date {
+      font-size: 0.85rem;
+      color: #034078;
+      font-weight: 400;
+      position: absolute;
+      right: 1rem;
+      top: 0.6rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #013a63;
+      color: #cce5ff;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 5px rgba(1, 58, 99, 0.7);
+    }
+
+    /* Responsive nav for small screens */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .logo {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo" aria-label="Logo personal">
+      <!-- simple laptop code icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 5H4a2 2 0 00-2 2v9a2 2 0 002 2h5v1H7v2h10v-2h-2v-1h5a2 2 0 002-2V7a2 2 0 00-2-2zm0 11H4V7h16z"/></svg>
+      Mi Portafolio
+    </div>
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="#inicio"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Inicio</a></li>
+        <li><a href="#proyectos"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2v8h8v10h-20v-18h4zM5 14h14v4H5z"/></svg>Proyectos</a></li>
+        <li><a href="#experiencia-academica"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l10 7-10 7-10-7z"/><path d="M2 17v-4l10 7 10-7v4H2z"/></svg>Experiencia Académica</a></li>
+        <li><a href="#experiencia-personal"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21h13a1.5 1.5 0 0 0-13 0z"/></svg>Experiencia Personal</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="inicio" tabindex="0" aria-label="Introducción personal">
+      <h1>Hola, soy Yesid</h1>
+      <img class="profile-pic" src="https://via.placeholder.com/140" alt="Foto de perfil de [Tu Nombre]" />
+      <p class="intro-text">
+        Soy un desarrollador apasionado con experiencia en creación de aplicaciones web modernas y eficientes. Me especializo en tecnologías front-end y back-end, y disfruto resolver problemas complejos con código limpio y mantenible.
+      </p>
+    </section>
+
+    <section id="proyectos" tabindex="0" aria-label="Proyectos destacados">
+      <h2>
+        <!-- carpeta icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 6h6l2 3h12v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/></svg>
+        Proyectos
+      </h2>
+      <div class="project-list">
+        <article class="project-card" tabindex="0" aria-label="Proyecto Tienda Virtual">
+          <h3>Tienda Virtual</h3>
+          <p>Una tienda en línea con carrito de compra y integración de pagos para vender productos de manera sencilla y segura.</p>
+          <a href="#" title="Ver proyecto Tienda Virtual" target="_blank" rel="noopener">Ver Proyecto</a>
+        </article>
+        <article class="project-card" tabindex="0" aria-label="Proyecto Blog Personal">
+          <h3>Blog Personal</h3>
+          <p>Plataforma de blogging con editor Markdown, comentarios y sistema de usuarios para compartir ideas y experiencias.</p>
+          <a href="#" title="Ver proyecto Blog Personal" target="_blank" rel="noopener">Ver Proyecto</a>
+        </article>
+        <article class="project-card" tabindex="0" aria-label="Proyecto Gestión de Tareas">
+          <h3>Gestión de Tareas</h3>
+          <p>Aplicación para organizar tareas diarias con prioridades, fechas límite y notificaciones personalizadas.</p>
+          <a href="#" title="Ver proyecto Gestión de Tareas" target="_blank" rel="noopener">Ver Proyecto</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="experiencia-academica" tabindex="0" aria-label="Experiencia académica">
+      <h2>
+        <!-- diploma icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 13v-2h10v2H7zm4 5c-2.21 0-4-1.79-4-4h8c0 2.21-1.79 4-4 4zM5 8v3h14V8H5zm-1-1h16v6H4V7z"/></svg>
+        Experiencia Académica
+      </h2>
+      <ul class="experience-list">
+        <li>
+          Ingeniería en Sistemas Computacionales - Universidad Nacional <span class="date">2016 - 2021</span>
+        </li>
+        <li>
+          Curso avanzado de JavaScript y React - Plataforma Udemy <span class="date">2022</span>
+        </li>
+        <li>
+          Certificación en desarrollo web fullstack - CódigoFacilito <span class="date">2023</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="experiencia-personal" tabindex="0" aria-label="Experiencia personal">
+      <h2>
+        <!-- briefcase icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5V3H6v2H2v14h20V5h-8zm-6 12H6v-6h2v6zm5 0h-3v-6h3v6zm5 0h-3v-6h3v6z"/></svg>
+        Experiencia Personal
+      </h2>
+      <ul class="experience-list">
+        <li>
+          Desarrollador Frontend en empresa XYZ - Creación de interfaces responsivas <span class="date">2021 - 2022</span>
+        </li>
+        <li>
+          Freelance - Desarrollo de sitios web y tiendas virtuales para clientes independientes <span class="date">2022 - Presente</span>
+        </li>
+        <li>
+          Participante activo en Hackathons y proyectos open source colaborativos <span class="date">2020 - Presente</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 [Tu Nombre]. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
+
